@@ -10,18 +10,35 @@ using System.Threading.Tasks;
  * Date: July 11, 2016 
  * Description: This program demonstrates a Dice Rolling Simulation  
  *  
- * Version: 0.0.3 - added sum of rolling and display functionality
+ * Version: 0.0.4 - added all comments
  */
 namespace COMP123_S16_Assignment4
 {
+    /**
+    * <summary>
+    * This is the driver class for Dice Rolling Simulation project
+    * </summary>
+    * 
+    * @class Program
+    */
+
     class Program
     {
+        //PRIVATE INSTANCE VARIABLE+++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private static Random _random;
         private static int _dice;
         private const int _defaultCount = 36000;
         private static List<int[]> _diceCount = new List<int[]>();
 
-
+        //MAIN MATHOD+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /**
+        * <summary>
+        * The main method for our driver class Program
+        * </summary>
+        * @method Main
+        * @param {sting[]} args
+        * @returns {void}
+        */
 
         static void Main(string[] args)
         {
@@ -30,6 +47,14 @@ namespace COMP123_S16_Assignment4
             Console.ReadKey();
         }
 
+        //PUBLIC PROPERTIES+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * <summary>
+        * The property retun randon value of dice rolling
+        * </summary>
+        * @property Dice
+        * @returns {int}
+        */
         public static int Dice
         {
             get
@@ -39,12 +64,20 @@ namespace COMP123_S16_Assignment4
             }
         }
 
-
-
+        /**
+        * <summary>
+        * The private static void initial method adds number of dices 
+        * and initialise random object
+        * </summary>
+        * @method _initialization
+        * @param {int} count
+        * @returns {void}
+        */
         private static void _initialization(int count = 2)
         {
             _random = new System.Random();
 
+            //add number of dices
             for (int i = 0; i < count; i++)
             {
                 _diceCount.Add(_diceRoll());
@@ -52,7 +85,16 @@ namespace COMP123_S16_Assignment4
 
             _buildDisplay();
         }
-
+        /**
+        * <summary>
+        * The private static integer array method adds value of dices rolling
+        * in array
+        * </summary>
+        * @method _diceRoll
+        * @field {int[]} diceRoll
+        * @param {int} count
+        * @returns {int[]}
+        */
         private static int[] _diceRoll(int count = _defaultCount)
         {
             int[] diceRoll = new int[count];
@@ -63,7 +105,15 @@ namespace COMP123_S16_Assignment4
             }
             return diceRoll;
         }
-
+        /**
+        * <summary>
+        * The private static integer array method make summation from the value of dices rolling
+        * </summary>
+        * @method _sumOfDicesResults
+        * @field {int[]} result
+        * @param {int} count
+        * @returns {int[]}
+        */
         private static int[] _sumOfDicesResults(int count = _defaultCount)
         {
             int[] result = new int[count];
@@ -80,10 +130,20 @@ namespace COMP123_S16_Assignment4
 
             return result;
         }
-
+        /**
+         * <summary>
+         * The private static void method build display dice result
+         * </summary>
+         * @method _buildDisplay
+         * @field {int[,]} displaTable
+         * @field {int[,]} repeatTime
+         * @param {int} count
+         * @returns {void}
+         */
 
         private static void _buildDisplay(int count = _defaultCount)
         {
+            //create display array of possible all sum value
             int[,] displaTable = new int[6, 6];
 
 
@@ -98,8 +158,7 @@ namespace COMP123_S16_Assignment4
 
             }
 
-
-            int[,] indexSum = new int[6, 6];
+            //create display array of actual all sum value
             int[,] repeatTime = new int[6, 6];
 
             foreach (int value in _sumOfDicesResults(count))
@@ -111,7 +170,7 @@ namespace COMP123_S16_Assignment4
 
                         if (displaTable[i, ii] == value)
                         {
-                            //indexSum[i,ii] += displaTable.ElementAt(i)[ii];
+
                             repeatTime[i, ii]++;
                         }
 
@@ -124,7 +183,15 @@ namespace COMP123_S16_Assignment4
             _display(displaTable, repeatTime);
 
         }
-
+        /**
+         * <summary>
+         * The private static void method display dice result to console
+         * </summary>
+         * @method _display
+         * @param {int[,]} indexSum
+         * @param {int[,]} repeatTime
+         * @returns {void}
+         */
         private static void _display(int[,] indexSum, int[,] repeatTime)
         {
             Console.WriteLine("        1                2                3                4                5                6   ");
