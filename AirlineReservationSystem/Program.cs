@@ -8,10 +8,10 @@ using System.Threading.Tasks;
  *Author: Md Mamunur Rahman 
  * Student ID: 300872772  
  * 
- * Date: July 13, 2016 
+ * Date last modified: July 19, 2016 
  * Description: This program demonstrates an Airline Reservation System  
  *  
- * Version: 0.0.3 - added seat booking functionality
+ * Version: 0.0.4 - added all comments
  */
 namespace AirlineReservationSystem
 {
@@ -27,12 +27,8 @@ namespace AirlineReservationSystem
     {
         //PRIVATE INSTANCE VARIABLE+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        // private static List<string> _seatingChart = new List<string>();
         private static List<string> _assignedSeats = new List<string>();
         private static List<List<String>> _seatingChart = new List<List<String>>();
-        //PROPERTIES
-
-
 
 
         //MAIN MATHOD+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -46,10 +42,20 @@ namespace AirlineReservationSystem
         */
         static void Main(string[] args)
         {
-            Initialized();
+            _initialized();
             _programMenu();
         }
 
+
+        //PRIVATE MATHODS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        /**
+        * <summary>
+        * This method creates option to select program menue
+        * </summary>
+        * @method _programMenu
+        * @field {sting} choice
+        * @returns {void}
+        */
         private static void _programMenu()
         {
             string choice;
@@ -57,17 +63,17 @@ namespace AirlineReservationSystem
             do
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                DisplayMenu();
+                _displayMenu();
                 choice = Console.ReadLine();
                 switch (choice)
                 {
                     case "1":
-                        ShowSeats(0);
-                        SelectSeats(0);
+                        _showSeats(0);
+                        _selectSeats(0);
                         break;
                     case "2":
-                        ShowSeats(1);
-                        SelectSeats(1);
+                        _showSeats(1);
+                        _selectSeats(1);
                         break;
                     case "3":
                         Console.WriteLine("Thank you for using this program");
@@ -82,8 +88,14 @@ namespace AirlineReservationSystem
 
 
         }
-
-        static void DisplayMenu()
+        /**
+        * <summary>
+        * This method display program menue
+        * </summary>
+        * @method _displayMenu
+        * @returns {void}
+        */
+        private static void _displayMenu()
         {
             Console.WriteLine();
             Console.WriteLine();
@@ -94,11 +106,16 @@ namespace AirlineReservationSystem
             Console.WriteLine("|                                                        |");
             Console.WriteLine("==========================================================\n");
             Console.Write("{0,15}", "Enter the number of your choice -> ");
-
         }
 
-
-        static void Initialized()
+        /**
+         * <summary>
+         * This method initialized the value of variable or objects
+         * </summary>
+         * @method _initialized
+         * @returns {void}
+         */
+        private static void _initialized()
         {
             //adding seat data
             _seatingChart.Add(new List<string>());
@@ -112,10 +129,17 @@ namespace AirlineReservationSystem
 
 
         }
-
-        static void ShowSeats(int seatType)
+        /**
+        * <summary>
+        * This method show available seats according to menue selected
+        * </summary>
+        * @method _showSeats
+        * @param {int} seatType
+        * @returns {void}
+        */
+        private static void _showSeats(int seatType)
         {
-            if (seatType==0)
+            if (seatType == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
             }
@@ -125,22 +149,42 @@ namespace AirlineReservationSystem
             }
 
             Console.WriteLine();
-            foreach (var seat in _seatingChart[seatType])
+            Console.WriteLine("-------Available Seats-------");
+            if (_seatingChart[seatType].Count != 0)
             {
-                Console.WriteLine(seat);
+                foreach (string seat in _seatingChart[seatType])
+                {
+                    Console.WriteLine(seat);
+                }
             }
+            else
+            {
+                Console.WriteLine("*****EMPTY*****");
+            }
+            Console.WriteLine("-----------------------------");
             Console.WriteLine();
-
-
-
         }
 
-        static void SelectSeats(int seatType)
+        /**
+         * <summary>
+         * This method execute all the functionalities of seat selection
+         * </summary>
+         * @method _selectSeats
+         * @param {int} seatType
+         * @fields {string} yesNo
+         * @fields {string} seatNumberEntryString
+         * @fields {char} seatNumberEntryChar
+         * @fields {int} seatNumberEntry
+         * @fields {string} seatNumber
+         * @fields {string} forwardClassName
+         * @returns {void}
+         */
+        private static void _selectSeats(int seatType)
         {
             //string variable for yes/no input
             string yesNo = "Y";
-             
-            //looping for repeated seat selection
+
+            //looping for repeated seat selection untill inter 'N'
             do
             {   //condition for whether seat is avaialble in a class according to seatType parameter
                 if (_seatingChart[seatType].Count != 0)
@@ -202,7 +246,7 @@ namespace AirlineReservationSystem
                                 //looping for further seat selection and showing seats
                                 do
                                 {
-                                    Console.Write("Thank you for booking seat. Do you want to book more? Y/N? ");
+                                    Console.Write("\nThank you for booking seat. Do you want to book more? Y/N? ");
                                     yesNo = Console.ReadLine();
 
                                     if (yesNo.ToUpper() != "Y" && yesNo.ToUpper() != "N")
@@ -212,7 +256,7 @@ namespace AirlineReservationSystem
                                     }
                                     else if (yesNo.ToUpper() == "Y")
                                     {
-                                        ShowSeats(seatType);
+                                        _showSeats(seatType);
                                         break;
                                     }
 
@@ -248,7 +292,7 @@ namespace AirlineReservationSystem
                     }
                     if (yesNo.ToUpper() == "Y")
                     {
-                        ShowSeats(seatType);
+                        _showSeats(seatType);
 
                     }
                     else if (yesNo.ToUpper() == "N")
@@ -258,7 +302,7 @@ namespace AirlineReservationSystem
                 }
 
                 //if there is no seat avaialble in any of the classes, exit from seat selection loop
-                if (_seatingChart[0].Count==0 && _seatingChart[1].Count==0)
+                if (_seatingChart[0].Count == 0 && _seatingChart[1].Count == 0)
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Red;
