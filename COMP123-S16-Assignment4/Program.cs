@@ -203,21 +203,21 @@ namespace COMP123_S16_Assignment4
                 {
                     if (indexSum[i, ii] > 9 && repeatTime[i, ii] > 9)
                     {
-                        Console.Write(i + " " + indexSum[i, ii] + ", " + repeatTime[i, ii] + " Roll| ");
+                        Console.Write((i+1) + " " + indexSum[i, ii] + ", " + repeatTime[i, ii] + " Roll| ");
 
                     }
                     else if (indexSum[i, ii] > 9 && repeatTime[i, ii] < 10)
                     {
-                        Console.Write(i + " " + indexSum[i, ii] + ",  " + repeatTime[i, ii] + " Roll| ");
+                        Console.Write((i + 1) + " " + indexSum[i, ii] + ",  " + repeatTime[i, ii] + " Roll| ");
                     }
                     else if (indexSum[i, ii] < 10 && repeatTime[i, ii] > 9)
                     {
-                        Console.Write(i + "  " + indexSum[i, ii] + ", " + repeatTime[i, ii] + " Roll| ");
+                        Console.Write((i + 1) + "  " + indexSum[i, ii] + ", " + repeatTime[i, ii] + " Roll| ");
 
                     }
                     else if (indexSum[i, ii] < 10 && repeatTime[i, ii] < 10)
                     {
-                        Console.Write(i + "  " + indexSum[i, ii] + ",  " + repeatTime[i, ii] + " Roll| ");
+                        Console.Write((i + 1) + "  " + indexSum[i, ii] + ",  " + repeatTime[i, ii] + " Roll| ");
 
                     }
 
